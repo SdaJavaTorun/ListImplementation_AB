@@ -6,12 +6,12 @@ package sdajava.implementacjaListy;
 
     class ListImpl{  //klasa zagniezdzona
 
-        private Node start;
-        private Node stop;
+        private Node begin;
+        private Node end;
 
         public ListImpl () {  //zerowanie wartosci
-            this.start = null;
-            this.stop = null; //"this." jest opcjonalne. Jesli nazwy isę nie powtarzaja
+            this.begin = null;
+            this.end = null; //"this." jest opcjonalne. Jesli nazwy isę nie powtarzaja
         }
 
         public void addElement(String value){
@@ -19,19 +19,19 @@ package sdajava.implementacjaListy;
             Node node = new Node(value,null, null);
 
             if(checkIsEmpty()){
-                start = node;
-                stop = node;
+                begin = node;
+                end = node;
             }
             else{
-                Node pm = start;
+                Node pm = begin;
 
                 while(pm !=null) {
                     pm.getNext();
 
-                    if(pm == start){
+                    if(pm == begin){
                         node.setNext(pm);
                         pm.setPrev(node);
-                        start = node;
+                        begin = node;
                         break;
                     }
                     else {
@@ -44,15 +44,35 @@ package sdajava.implementacjaListy;
 
                 }
                 if(pm==null) {
-                    stop.setNext(node);
-                    node.setPrev(stop);
-                    stop=node;
+                    end.setNext(node);
+                    node.setPrev(end);
+                    end =node;
                 }
 
             }
         }
         public boolean checkIsEmpty(){
-            return (start==null);
+            return (begin ==null);
+        }
+
+        public void showList() {
+
+            Node list = end;
+            while(list !=null){
+                System.out.println(list.getValue());
+                list = list.getPrev();
+            }
+
+        }
+
+        public int sizeList() {
+            Node list = begin;
+            int counter = 0;
+            while (list != null){
+                counter++;
+                list = list.getNext();  // przeliterowanie po calości
+            }
+            return counter;
         }
 
     }

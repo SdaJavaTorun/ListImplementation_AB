@@ -12,6 +12,7 @@ public class Main {
         lista.addElement("drugi");
         lista.addElement("trzeci");
 
-
+       lista.showList();
+       System.out.println("Rozmiar listy to  " + lista.sizeList());
     }
 }
